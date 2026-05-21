@@ -60,11 +60,22 @@ export async function getAuditBySlug(slug: string): Promise<AuditResult | null> 
 }
 
 // ─── Lead capture ─────────────────────────────────────────────────────────────
-
-export async function saveLeadEmail(email: string, auditId: string): Promise<boolean> {
-  const { error } = await supabase
+export async function saveLeadEmail(
+  email: string,
+  auditId: string
+) {
+  const { data, error } = await supabase
     .from("leads")
-    .upsert({ email, audit_id: auditId, created_at: new Date().toISOString() });
+    .insert([
+      {
+        email: email,
+        audit_id: auditId,
+      },
+    ])
+    .select();
+
+  console.log("Lead insert data:", data);
+  console.log("Lead insert error:", error);
 
   if (error) {
     console.error("Failed to save lead:", error.message);
