@@ -1,0 +1,152 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap');
+
+:root {
+  --font-display: 'Syne', sans-serif;
+  --font-geist-sans: 'DM Sans', sans-serif;
+
+  --background: 220 16% 6%;
+  --foreground: 210 20% 94%;
+
+  --card: 220 14% 9%;
+  --card-foreground: 210 20% 94%;
+
+  --border: 220 12% 14%;
+  --input: 220 14% 12%;
+  --ring: 195 100% 50%;
+
+  --primary: 195 100% 50%;
+  --primary-foreground: 220 16% 6%;
+
+  --secondary: 220 14% 12%;
+  --secondary-foreground: 210 20% 94%;
+
+  --muted: 220 14% 12%;
+  --muted-foreground: 220 10% 52%;
+
+  --accent: 195 100% 50%;
+  --accent-foreground: 220 16% 6%;
+
+  --destructive: 0 72% 51%;
+  --destructive-foreground: 210 20% 94%;
+
+  --radius: 0.625rem;
+
+  /* Brand colours */
+  --cyan: #00d4ff;
+  --cyan-dim: rgba(0, 212, 255, 0.12);
+  --cyan-border: rgba(0, 212, 255, 0.25);
+  --green: #00e5a0;
+  --green-dim: rgba(0, 229, 160, 0.12);
+  --yellow: #ffd60a;
+  --yellow-dim: rgba(255, 214, 10, 0.12);
+  --red: #ff4757;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  background-color: hsl(var(--background));
+  color: hsl(var(--foreground));
+  font-family: var(--font-geist-sans);
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--border));
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover { background: hsl(var(--muted-foreground)); }
+
+/* Selection */
+::selection {
+  background: var(--cyan-dim);
+  color: var(--cyan);
+}
+
+/* Focus ring */
+:focus-visible {
+  outline: 2px solid var(--cyan);
+  outline-offset: 2px;
+  border-radius: var(--radius);
+}
+
+/* Noise texture overlay */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.4;
+}
+
+/* Gradient mesh */
+.gradient-mesh {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 80% 50% at 20% -10%, rgba(0, 212, 255, 0.08) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 40% at 80% 110%, rgba(0, 229, 160, 0.06) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+/* Glow effects */
+.glow-cyan {
+  box-shadow: 0 0 24px rgba(0, 212, 255, 0.15), 0 0 48px rgba(0, 212, 255, 0.06);
+}
+
+.text-glow {
+  text-shadow: 0 0 40px rgba(0, 212, 255, 0.4);
+}
+
+/* Grid pattern */
+.grid-pattern {
+  background-image:
+    linear-gradient(rgba(0, 212, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 212, 255, 0.03) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+
+/* Shimmer */
+.shimmer {
+  background: linear-gradient(90deg, transparent, rgba(0, 212, 255, 0.08), transparent);
+  background-size: 200% 100%;
+  animation: shimmer 2.5s linear infinite;
+}
+
+/* Typography utilities */
+.font-display { font-family: var(--font-display); }
+
+/* Animated gradient border */
+.gradient-border {
+  position: relative;
+}
+.gradient-border::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: calc(var(--radius) + 1px);
+  background: linear-gradient(135deg, var(--cyan-border), transparent 40%, var(--cyan-border));
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+.gradient-border:hover::before { opacity: 1; }
