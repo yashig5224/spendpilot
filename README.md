@@ -164,7 +164,24 @@ SpendPilot currently supports auditing for:
 * Anthropic API
 
 ---
+# Screenshots of the project 
+## 1. Landing Page
+<img src="" width=200px>
 
+## 2.Audit Form Page
+<img src="" width=200px>
+
+## 3.Audit Review Page
+<img src="" width=200px>
+
+## 4.Downloaded pdf 
+<img src="" width=200px>
+
+## 5.Email form 
+<img src="" width=200px>
+
+
+---
 # Local Development
 
 ## 1. Clone Repository

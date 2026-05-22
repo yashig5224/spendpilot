@@ -5,8 +5,7 @@ import { Toaster } from "@/components/ui/toaster";
 
 export const metadata: Metadata = {
   title: "SpendPilot — Audit Your AI Software Spend",
-  description:
-    "Stop overpaying for AI tools. SpendPilot audits your AI subscriptions and finds hidden savings in minutes.",
+  description: "Stop overpaying for AI tools. SpendPilot audits your AI subscriptions and finds hidden savings in minutes.",
   openGraph: {
     title: "SpendPilot — Audit Your AI Software Spend",
     description: "Stop overpaying for AI tools. Find hidden savings in minutes.",
@@ -23,8 +22,8 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className="dark">
-      <body className="min-h-screen antialiased">
+    <html lang="en">
+      <body className="min-h-screen antialiased bg-gray-50">
         <Navbar />
         <main>{children}</main>
         <Toaster />

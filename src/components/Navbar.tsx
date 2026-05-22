@@ -16,15 +16,12 @@ export function Navbar() {
           initial={{ opacity: 0, y: -12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4, ease: "easeOut" }}
-          className="flex items-center justify-between rounded-xl border border-white/[0.06] bg-black/40 px-5 py-3 backdrop-blur-xl"
+          className="flex items-center justify-between rounded-2xl border border-gray-200 bg-white/90 px-5 py-3 shadow-sm backdrop-blur-xl"
         >
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2 group">
-            <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-cyan-400/10 border border-cyan-400/20 group-hover:bg-cyan-400/20 transition-colors">
-              <Zap className="h-3.5 w-3.5 text-cyan-400" />
-            </div>
-            <span className="font-display text-sm font-700 tracking-tight text-white">
-              Spend<span className="text-cyan-400">Pilot</span>
+            <span className="font-display text-md font-800 tracking-tight text-gray-900">
+              Spend<span className="text-blue-600">Pilot</span>
             </span>
           </Link>
 
@@ -38,10 +35,10 @@ export function Navbar() {
                 key={href}
                 href={href}
                 className={cn(
-                  "px-3 py-1.5 rounded-lg text-sm transition-all duration-200",
+                  "px-3 py-1.5 rounded-lg text-md font-500 transition-all duration-200",
                   pathname === href
-                    ? "text-white bg-white/[0.08]"
-                    : "text-white/50 hover:text-white hover:bg-white/[0.05]"
+                    ? "text-blue-600 bg-blue-50"
+                    : "text-gray-500 hover:text-gray-900 hover:bg-gray-100"
                 )}
               >
                 {label}
@@ -52,9 +49,8 @@ export function Navbar() {
           {/* CTA */}
           <Link
             href="/audit"
-            className="flex items-center gap-1.5 rounded-lg bg-cyan-400 px-4 py-2 text-xs font-600 text-black transition-all hover:bg-cyan-300 hover:shadow-[0_0_20px_rgba(0,212,255,0.3)]"
+            className="flex items-center gap-1.5 rounded-xl bg-blue-600 px-4 py-2 text-md font-600 text-white transition-all hover:bg-blue-700 hover:shadow-md active:scale-[0.98]"
           >
-            <Zap className="h-3 w-3" />
             Start Audit
           </Link>
         </motion.nav>
