@@ -1,9 +1,12 @@
 "use client";
 
+import { Suspense } from "react";
 import { ResultsClient } from "@/components/ResultsClient";
 
-export const dynamic = "force-dynamic";
-
 export default function ResultsPage() {
-  return <ResultsClient />;
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <ResultsClient />
+    </Suspense>
+  );
 }
