@@ -18,6 +18,8 @@
 **Blockers / what I'm stuck on:** Minor CI workflow and GitHub Actions configuration issues.
 **Plan for tomorrow:** Improve responsiveness, add testing, and polish UI interactions.
 
+---
+
 Day 3 — 2026-05-23
 
 Hours worked: 3
