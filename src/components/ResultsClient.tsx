@@ -22,7 +22,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 
-import type { AuditResult, Recommendation } from "@/lib/types";
+import type { AuditResult} from "@/lib/types";
 
 import { formatCurrency, formatPercent } from "@/lib/utils";
 import { getToolLabel } from "@/lib/pricing";
@@ -159,7 +159,9 @@ export function ResultsClient() {
       if (data.summary) {
         setAiSummary(data.summary);
       }
-    } catch {}
+    } catch (error) {
+  console.error(error);
+}
 
     finally {
       setSummaryLoading(false);

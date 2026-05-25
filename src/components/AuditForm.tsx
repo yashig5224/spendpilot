@@ -57,12 +57,16 @@ export function AuditForm() {
     try {
       const saved = localStorage.getItem(STORAGE_KEY);
       if (saved) form.reset(JSON.parse(saved));
-    } catch {}
+    } catch (error) {
+  console.error(error);
+}
   }, [form]);
 
   const values = form.watch();
   useEffect(() => {
-    try { localStorage.setItem(STORAGE_KEY, JSON.stringify(values)); } catch {}
+    try { localStorage.setItem(STORAGE_KEY, JSON.stringify(values)); } catch (error) {
+  console.error(error);
+}
   }, [values]);
 
   const onSubmit = useCallback((data: FormValues) => {

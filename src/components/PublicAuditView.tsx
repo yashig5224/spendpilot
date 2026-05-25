@@ -8,8 +8,6 @@ import {
   CheckCircle2,
   Sparkles,
   Calendar,
-  ArrowDownCircle,
-  RefreshCw,
   Shield,
 } from "lucide-react";
 
