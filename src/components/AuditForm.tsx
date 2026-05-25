@@ -78,9 +78,6 @@ export function AuditForm() {
   return (
     <div>
       <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }} className="mb-10">
-        <div className="inline-flex items-center gap-2 rounded-full border border-blue-200 bg-blue-50 px-3 py-1 text-xs font-600 text-blue-700 mb-4">
-          <Zap className="h-3 w-3" /> Free audit
-        </div>
         <h1 className="font-display text-4xl font-700 tracking-tight text-gray-900 mb-2">Your AI stack</h1>
         <p className="text-gray-500 text-base">Add each AI tool your team uses. We&apos;ll calculate exact savings per tool.</p>
       </motion.div>

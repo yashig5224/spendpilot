@@ -1,60 +1,33 @@
-# Pricing Data
+# PRICING_DATA
 
-## Overview
+## Cursor
 
-Pricing information used in SpendPilot was manually researched from official pricing pages of AI software providers.
-The pricing data is used by the deterministic audit engine to generate savings recommendations and optimization insights.
+* Pro: $20/user/month — https://cursor.com/pricing — verified 2026-05-22
+* Business: $40/user/month — https://cursor.com/pricing — verified 2026-05-22
 
----
+## ChatGPT
 
-## Sources
+* Plus: $20/user/month — https://openai.com/chatgpt/pricing — verified 2026-05-22
+* Team: $30/user/month — https://openai.com/chatgpt/pricing — verified 2026-05-22
 
-### ChatGPT
+## Claude
 
-Source: https://openai.com/chatgpt/pricing
-Verified: May 2026
+* Pro: $20/user/month — https://www.anthropic.com/pricing — verified 2026-05-22
+* Team: $30/user/month — https://www.anthropic.com/pricing — verified 2026-05-22
 
-### Claude
+## GitHub Copilot
 
-Source: https://www.anthropic.com/pricing
-Verified: May 2026
+* Individual: $10/user/month — https://github.com/features/copilot — verified 2026-05-22
+* Business: $19/user/month — https://github.com/features/copilot — verified 2026-05-22
 
-### Cursor
+## Gemini
 
-Source: https://cursor.com/pricing
-Verified: May 2026
+* Gemini Advanced: $20/user/month — https://gemini.google/pricing — verified 2026-05-22
 
-### GitHub Copilot
+## OpenAI API
 
-Source: https://github.com/features/copilot
-Verified: May 2026
+* GPT-4 Turbo pricing — https://platform.openai.com/docs/pricing — verified 2026-05-22
 
-### Gemini
+## Anthropic API
 
-Source: https://gemini.google/pricing
-Verified: May 2026
-
----
-
-## Pricing Assumptions
-
-The audit engine currently assumes:
-
-* monthly subscription billing,
-* standard public pricing,
-* small-to-medium team usage,
-* average API usage estimates.
-
-Enterprise custom pricing was excluded from calculations because pricing varies significantly between organizations.
-
----
-
-## Notes
-
-Pricing data is centralized in:
-
-```txt
-src/lib/pricing.ts
-```
-
-The pricing configuration can be updated easily as vendors change pricing models in the future.
+* Claude Sonnet pricing — https://www.anthropic.com/pricing#api — verified 2026-05-22

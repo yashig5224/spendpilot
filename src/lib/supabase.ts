@@ -11,19 +11,22 @@ export const supabase = createClient(supabaseUrl, supabaseAnonKey);
 export async function saveAudit(audit: AuditResult): Promise<string | null> {
   const { data, error } = await supabase
     .from("audits")
-    .insert({
-      id: audit.id,
-      share_slug: audit.shareSlug,
-      tool_entries: audit.toolEntries,
-      recommendations: audit.recommendations,
-      total_monthly_savings: audit.totalMonthlySavings,
-      total_yearly_savings: audit.totalYearlySavings,
-      current_monthly_spend: audit.currentMonthlySpend,
-      optimized_monthly_spend: audit.optimizedMonthlySpend,
-      ai_summary: audit.aiSummary ?? null,
-      email: audit.email ?? null,
-      created_at: audit.createdAt,
-    })
+    .upsert(
+      {
+        id: audit.id,
+        share_slug: audit.shareSlug,
+        tool_entries: audit.toolEntries,
+        recommendations: audit.recommendations,
+        total_monthly_savings: audit.totalMonthlySavings,
+        total_yearly_savings: audit.totalYearlySavings,
+        current_monthly_spend: audit.currentMonthlySpend,
+        optimized_monthly_spend: audit.optimizedMonthlySpend,
+        ai_summary: audit.aiSummary ?? null,
+        email: audit.email ?? null,
+        created_at: audit.createdAt,
+      },
+      { onConflict: "id,share_slug", ignoreDuplicates: true }
+    )
     .select("id")
     .single();
 
@@ -60,22 +63,11 @@ export async function getAuditBySlug(slug: string): Promise<AuditResult | null> 
 }
 
 // ─── Lead capture ─────────────────────────────────────────────────────────────
-export async function saveLeadEmail(
-  email: string,
-  auditId: string
-) {
-  const { data, error } = await supabase
-    .from("leads")
-    .insert([
-      {
-        email: email,
-        audit_id: auditId,
-      },
-    ])
-    .select();
 
-  console.log("Lead insert data:", data);
-  console.log("Lead insert error:", error);
+export async function saveLeadEmail(email: string, auditId: string): Promise<boolean> {
+  const { error } = await supabase
+    .from("leads")
+    .upsert({ email, audit_id: auditId, created_at: new Date().toISOString() });
 
   if (error) {
     console.error("Failed to save lead:", error.message);

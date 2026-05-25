@@ -223,12 +223,105 @@ export function ResultsClient() {
     }
   }, [email, audit]);
 
-  const handleDownloadPdf = useCallback(async () => {
-    toast({
-      title: "PDF feature ready",
-      description: "Your PDF logic remains unchanged.",
+  const handleDownloadPdf = useCallback(() => {
+    if (!audit) return;
+    setPdfLoading(true);
+
+    const recs = audit.recommendations.map((r) => `
+      <div style="background:#f9fafb;border:1px solid #e5e7eb;border-radius:10px;padding:14px;margin-bottom:10px;">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px;">
+          <div>
+            <div style="font-size:14px;font-weight:700;color:#111827;">${getToolLabel(r.tool)}</div>
+            <div style="font-size:11px;text-transform:uppercase;letter-spacing:0.05em;color:#6b7280;margin-top:3px;">${r.action}</div>
+            ${r.recommendedPlan ? `<div style="font-size:11px;color:#6b7280;margin-top:4px;">${r.currentPlan} → <span style="color:#2563eb;font-weight:600;">${r.recommendedPlan}</span></div>` : ""}
+          </div>
+          ${r.estimatedMonthlySavings > 0 ? `
+            <div style="text-align:right;">
+              <div style="font-size:16px;font-weight:800;color:#16a34a;">${formatCurrency(r.estimatedMonthlySavings)}/mo</div>
+              <div style="font-size:11px;color:#6b7280;">${formatCurrency(r.estimatedYearlySavings)}/yr</div>
+            </div>` : ""}
+        </div>
+        <div style="font-size:12px;color:#4b5563;line-height:1.65;">${r.reasoning}</div>
+      </div>`).join("");
+
+    const html = `<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>SpendPilot Audit Report</title>
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box;-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+    body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;padding:32px;max-width:680px;margin:0 auto;color:#111827;background:#fff;}
+    @media print{@page{margin:12mm;size:A4;}}
+  </style>
+</head>
+<body>
+
+  <div style="background:#2563eb;border-radius:12px;padding:22px 26px;margin-bottom:20px;">
+    <div style="font-size:22px;font-weight:800;color:#fff;">SpendPilot — Audit Report</div>
+    <div style="font-size:12px;color:rgba(255,255,255,0.7);margin-top:4px;">
+      Generated ${new Date(audit.createdAt).toLocaleDateString("en-US",{year:"numeric",month:"long",day:"numeric"})}
+    </div>
+  </div>
+
+  <div style="background:#f0fdf4;border:1px solid #bbf7d0;border-radius:12px;padding:20px 24px;margin-bottom:16px;display:flex;justify-content:space-between;align-items:center;">
+    <div>
+      <div style="font-size:11px;font-weight:600;color:#6b7280;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:4px;">Monthly Savings</div>
+      <div style="font-size:36px;font-weight:800;color:#16a34a;line-height:1;">${formatCurrency(audit.totalMonthlySavings)}</div>
+    </div>
+    <div style="text-align:right;">
+      <div style="font-size:11px;font-weight:600;color:#6b7280;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:4px;">Yearly Savings</div>
+      <div style="font-size:26px;font-weight:800;color:#2563eb;line-height:1;">${formatCurrency(audit.totalYearlySavings)}</div>
+    </div>
+  </div>
+
+  <div style="border:1px solid #e5e7eb;border-radius:10px;overflow:hidden;margin-bottom:16px;">
+    <div style="background:#f3f4f6;padding:10px 14px;font-size:13px;font-weight:700;color:#111827;border-bottom:1px solid #e5e7eb;">Spend Summary</div>
+    ${[
+      ["Current monthly spend", formatCurrency(audit.currentMonthlySpend)],
+      ["Optimised monthly spend", formatCurrency(audit.optimizedMonthlySpend)],
+      ["Monthly savings", formatCurrency(audit.totalMonthlySavings)],
+      ["Yearly savings", formatCurrency(audit.totalYearlySavings)],
+    ].map(([l, v], i) => `
+      <div style="display:flex;justify-content:space-between;padding:9px 14px;background:${i % 2 === 0 ? "#f9fafb" : "#fff"};border-bottom:1px solid #f3f4f6;">
+        <span style="font-size:13px;color:#6b7280;">${l}</span>
+        <span style="font-size:13px;font-weight:700;color:#111827;">${v}</span>
+      </div>`).join("")}
+  </div>
+
+  ${aiSummary ? `
+  <div style="background:#f5f3ff;border:1px solid #ddd6fe;border-radius:10px;padding:16px 18px;margin-bottom:16px;">
+    <div style="font-size:11px;font-weight:700;color:#7c3aed;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:8px;">✦ AI Summary</div>
+    <div style="font-size:13px;color:#4b5563;line-height:1.7;">${aiSummary}</div>
+  </div>` : ""}
+
+  <div style="font-size:15px;font-weight:700;color:#111827;margin-bottom:12px;">Recommendations</div>
+  ${recs}
+
+  <div style="margin-top:24px;padding-top:12px;border-top:1px solid #e5e7eb;display:flex;justify-content:space-between;">
+    <span style="font-size:11px;color:#9ca3af;">SpendPilot · spendpilot.io</span>
+    <span style="font-size:11px;color:#9ca3af;">Free AI spend audits for startups</span>
+  </div>
+
+  <script>
+    window.addEventListener('load', function() {
+      setTimeout(function() { window.print(); }, 400);
     });
-  }, []);
+  </script>
+</body>
+</html>`;
+
+    const w = window.open("", "_blank", "width=800,height=900");
+    if (!w) {
+      toast({ title: "Popup blocked!", description: "Allow popups for localhost in your browser, then try again." });
+      setPdfLoading(false);
+      return;
+    }
+    w.document.write(html);
+    w.document.close();
+    toast({ title: "Print dialog opening…", description: "Select 'Save as PDF' as the printer." });
+    setPdfLoading(false);
+  }, [audit, aiSummary]);
 
   if (!audit) {
     return (
