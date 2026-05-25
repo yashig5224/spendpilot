@@ -230,23 +230,31 @@ SpendPilot currently supports auditing for:
 
 ## 1. Landing Page
 
-<img src="" width=200px>
+<img width="1917" height="872" alt="image" src="https://github.com/user-attachments/assets/4024f420-9203-4868-b4cb-d444fe0de021" />
+<img width="1919" height="873" alt="image" src="https://github.com/user-attachments/assets/7341e98e-5301-419d-be04-0b5207cd47d3" />
+<img width="1918" height="869" alt="image" src="https://github.com/user-attachments/assets/de38474a-aeb9-4867-8a8a-9995c66b11f0" />
+
 
 ## 2.Audit Form Page
-
-<img src="" width=200px>
+<img width="1919" height="912" alt="image" src="https://github.com/user-attachments/assets/31129ffe-ad91-4840-80d2-76c612c21b57" />
+<img width="1919" height="913" alt="image" src="https://github.com/user-attachments/assets/613155d1-6f71-4827-95c2-e171495571fe" />
+<img width="1916" height="917" alt="image" src="https://github.com/user-attachments/assets/4784e9b7-d878-4213-b76c-d09b8f7f2844" />
+<img width="1919" height="900" alt="image" src="https://github.com/user-attachments/assets/0c9d6f3a-c121-4b28-9c72-50a43092389f" />
+<img width="1918" height="911" alt="image" src="https://github.com/user-attachments/assets/2b340ddf-267b-41a0-a4e1-c98167e1d149" />
 
 ## 3.Audit Review Page
+<img width="1919" height="908" alt="image" src="https://github.com/user-attachments/assets/ec02c0c1-4058-423c-a09f-6e9256addd2e" />
+<img width="1919" height="911" alt="image" src="https://github.com/user-attachments/assets/c30b61b4-c4f6-45a5-9583-91115d2741e7" />
+<img width="1918" height="911" alt="image" src="https://github.com/user-attachments/assets/672ecc6e-d3ef-4934-adb6-862e0398c028" />
 
-<img src="" width=200px>
 
 ## 4.Downloaded pdf
-
-<img src="" width=200px>
+<img width="1007" height="952" alt="image" src="https://github.com/user-attachments/assets/4c07b8ab-72b0-4ed6-826b-05f63a2ea126" />
+<img width="1897" height="946" alt="image" src="https://github.com/user-attachments/assets/1036f795-bd8a-4bd6-a1da-7adae69481d5" />
 
 ## 5.Email form
-
-<img src="" width=200px>
+<img width="1531" height="764" alt="image" src="https://github.com/user-attachments/assets/f60a796b-9396-4330-8f87-a53a487a14b7" />
+<img width="1401" height="623" alt="image" src="https://github.com/user-attachments/assets/10a48cdf-304e-497f-8a19-223f688c00d9" />
 
 ---
 
