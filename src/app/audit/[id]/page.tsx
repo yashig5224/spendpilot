@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { getAuditBySlug } from "@/lib/supabase";
-import { PublicAuditView } from "@/components/PublicAuditView";
+import {PublicAuditView} from "@/components/PublicAuditView";
 
 interface Props {
   params: Promise<{ id: string }>;
