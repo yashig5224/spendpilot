@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { ArrowRight, Zap, TrendingDown, DollarSign, Shield } from "lucide-react";
+import { ArrowRight, Zap, TrendingDown, DollarSign, } from "lucide-react";
 
 const TOOLS = ["Cursor", "Copilot", "Claude", "ChatGPT", "Gemini", "Windsurf", "OpenAI API", "Anthropic API"];
 
